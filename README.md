@@ -559,17 +559,23 @@ python3 main.py --dry-run niche category-filter --marketplace-id US --time-range
 
 - ⭐ 给项目点个 Star
 - 📱 添加微信：Pangolin-Scraper（备注：GitHub 免费测试）
+- 💬 WhatsApp（备注：GitHub 免费测试）
 
-<p>
-  <img src="images/wechat-qrcode.png" alt="微信二维码：Pangolin-Scraper" width="320">
-</p>
+<table>
+  <tr>
+    <td align="center">
+      <img src="images/wechat-qrcode.png" alt="微信二维码：Pangolin-Scraper" width="220">
+      <br>
+      微信：Pangolin-Scraper
+    </td>
+    <td align="center">
+      <img src="images/whatsApp.webp" alt="WhatsApp 二维码" width="220">
+      <br>
+      WhatsApp：GitHub 免费测试
+    </td>
+  </tr>
+</table>
 
-- � WhatsApp（备注：GitHub 免费测试）
-
-<p>
-  <img src="images/whatsApp.webp" alt="WhatsApp 二维码" width="320">
-</p>
-
-- �🚀 开始您的数据采集之旅
+- � 开始您的数据采集之旅
 
 让数据采集变得简单，让开源精神传递！ 🌟
