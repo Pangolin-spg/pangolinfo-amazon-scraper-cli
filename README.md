@@ -564,6 +564,12 @@ python3 main.py --dry-run niche category-filter --marketplace-id US --time-range
   <img src="images/wechat-qrcode.png" alt="微信二维码：Pangolin-Scraper" width="320">
 </p>
 
-- 🚀 开始您的数据采集之旅
+- � WhatsApp（备注：GitHub 免费测试）
+
+<p>
+  <img src="images/whatsApp.webp" alt="WhatsApp 二维码" width="320">
+</p>
+
+- �🚀 开始您的数据采集之旅
 
 让数据采集变得简单，让开源精神传递！ 🌟
