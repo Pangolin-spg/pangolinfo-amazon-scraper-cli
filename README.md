@@ -12,18 +12,11 @@
 
 核心观点：Agent 是否靠谱，首先取决于输入是否靠谱；而“靠谱输入”通常意味着 **实时、可验证、结构化**。
 
-## 官方链接与免费试用
+## 官网入口与免费试用
 
-- 官网：https://www.pangolinfo.com/?referrer=github_amz
-- 控制台｜获取 API Key：https://tool.pangolinfo.com/?referrer=github_amz
-- 文档：https://docs.pangolinfo.com/?referrer=github_amz
-- Scrape API：https://www.pangolinfo.com/zh/scraping-api/?referrer=github_amz
-- Amazon Niche Data API：https://www.pangolinfo.com/zh/cn-amazon-niche-data-api/?referrer=github_amz
-- AI SERP API：https://www.pangolinfo.com/zh/google-ai-overview-api/?referrer=github_amz
-- Amazon Scraper Skill：https://www.pangolinfo.com/zh/pangolinfo-amazon-scraper-skill/?referrer=github_amz
-- AI SERP Skill：https://www.pangolinfo.com/zh/pangolinfo-ai-serp-api-skill/?referrer=github_amz
+[官网](https://www.pangolinfo.com/?referrer=github_amz)｜[控制台｜获取 API Key](https://tool.pangolinfo.com/?referrer=github_amz)｜[文档](https://docs.pangolinfo.com/?referrer=github_amz)｜[Scrape API](https://www.pangolinfo.com/zh/scraping-api/?referrer=github_amz)｜[Amazon Niche Data API](https://www.pangolinfo.com/zh/cn-amazon-niche-data-api/?referrer=github_amz)｜[AI SERP API](https://www.pangolinfo.com/zh/google-ai-overview-api/?referrer=github_amz)｜[Amazon Scraper Skill](https://www.pangolinfo.com/zh/pangolinfo-amazon-scraper-skill/?referrer=github_amz)｜[AI SERP Skill](https://www.pangolinfo.com/zh/pangolinfo-ai-serp-api-skill/?referrer=github_amz)
 
-行动号召：去控制台免费获取 API Key 做测试，新注册账号会赠送免费测试积分。https://tool.pangolinfo.com/?referrer=github_amz
+免费试用：前往[控制台](https://tool.pangolinfo.com/?referrer=github_amz)注册并生成 API Key，新用户可获得免费测试积分，用于验证接口效果与数据准确性。
 
 ## 目录
 
