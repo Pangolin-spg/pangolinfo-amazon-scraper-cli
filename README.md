@@ -193,6 +193,10 @@ python3 main.py auth
 - URL：`POST https://scrapeapi.pangolinfo.com/api/v1/scrape`
 - Headers：`Authorization: Bearer <token>`、`Content-Type: application/json`
 
+接口说明：
+
+Amazon Scrape API 可动态兼容 Amazon 等电商页面结构变化，通过解析模板（`parserName`）自动提取结构化字段（标题、价格、库存、评分、评论等）。你只需要提供 URL 或 `site + content`，即可获得适合程序与 AI Agent 使用的实时 JSON 输出。
+
 关键参数（按官方文档描述）：
 
 | 参数 | 必填 | 类型 | 说明 |
@@ -203,6 +207,134 @@ python3 main.py auth
 | content | 是（或 url） | string | 随 parserName 而变：ASIN / keyword / category node id / seller id 等 |
 | format | 是 | string | `json` |
 | bizContext | 是 | object | 业务上下文（例如 `zipcode`） |
+
+`content` 与 `parserName` 的对应关系：
+
+| parserName | content 应填什么 |
+|---|---|
+| amzProductDetail | ASIN |
+| amzKeyword | 关键词（keyword） |
+| amzProductOfCategory | 类目 Node ID |
+| amzProductOfSeller | 卖家/店铺 ID（Seller ID） |
+| amzBestSellers | 热卖榜类目关键词 |
+| amzNewReleases | 新品榜类目关键词 |
+
+返回结构（核心路径）：
+
+- `code` / `message` / `data`
+- 主要结果通常在：`data.json[0].data.results`
+
+字段说明（按解析器）：
+
+#### amzProductDetail（商品详情）
+
+| 字段 | 说明 |
+|---|---|
+| asin | ASIN 码 |
+| title | 商品标题 |
+| image | 主图链接 |
+| price | 商品价格 |
+| strikethroughPrice | 划线价格 |
+| star | 商品评分 |
+| rating | 评分数 |
+| badge | 徽章 |
+| acBadge | 是否 AC 标识 |
+| sales | 商品销量 |
+| images | 图片集 |
+| seller | 卖家 |
+| shipper | 发货方 |
+| inStock | 库存 |
+| merchant_id | 卖家 ID |
+| color | 颜色 |
+| size | 尺寸 |
+| brand | 品牌 |
+| has_cart | 是否有购物车 |
+| followSeller | 跟卖信息 |
+| features | 五点描述 |
+| coupon | 优惠券 |
+| ratingDistribution | 评分分布 |
+| otherAsins | 关联 ASIN |
+| deliveryTime | 发货时间 |
+| category_id | 类目 ID |
+| category_name | 类目名称 |
+| pkg_dims | 包裹尺寸 |
+| pkg_weight | 包裹重量 |
+| product_dims | 商品尺寸 |
+| product_weight | 商品重量 |
+| first_date | 上市时间 |
+| bestSellersRank | 热卖排名 |
+| productDescription | 商品描述 |
+| highResolutionImages | 高清图 |
+| galleryThumbnails | 缩略图 |
+| aiReviewsSummary | AI 总结 |
+| reviews | 客户评论 |
+| attributes | 商品属性 |
+| productOverview | 产品概述 |
+| variantDetails | 变体详情 |
+| parentAsin | 父级 ASIN |
+
+#### amzKeyword（关键词搜索）
+
+| 字段 | 说明 |
+|---|---|
+| asin | ASIN 码 |
+| title | 商品标题 |
+| price | 商品价格 |
+| star | 商品评分 |
+| rating | 评分数 |
+| image | 图片链接 |
+| sales | 商品销量 |
+| rank | 自然排名 |
+| sponsored | 是否 SP 广告 |
+| spRank | SP 广告排名 |
+| badge | 徽章 |
+| delivery | 发货时间 |
+
+#### amzProductOfCategory（类目商品列表）
+
+| 字段 | 说明 |
+|---|---|
+| asin | ASIN 码 |
+| title | 商品标题 |
+| price | 商品价格 |
+| star | 商品评分 |
+| rating | 评分数 |
+| image | 图片链接 |
+
+#### amzProductOfSeller（卖家商品列表）
+
+| 字段 | 说明 |
+|---|---|
+| asin | ASIN 码 |
+| title | 商品标题 |
+| price | 商品价格 |
+| star | 商品评分 |
+| rating | 评分数 |
+| image | 图片链接 |
+
+#### amzBestSellers（热销榜）
+
+| 字段 | 说明 |
+|---|---|
+| asin | ASIN 码 |
+| rank | 榜单排名 |
+| title | 商品标题 |
+| price | 商品价格 |
+| star | 商品评分 |
+| rating | 评分数 |
+| image | 图片链接 |
+
+#### amzNewReleases（新品榜）
+
+| 字段 | 说明 |
+|---|---|
+| asin | ASIN 码 |
+| rank | 榜单排名 |
+| title | 商品标题 |
+| price | 商品价格 |
+| star | 商品评分 |
+| rating | 评分数 |
+| image | 图片链接 |
 
 ### Amazon Review API：通用参数
 
@@ -421,23 +553,12 @@ python3 main.py --dry-run niche category-filter --marketplace-id US --time-range
 - Markdown 适合做 RAG（切块、检索、引用），建议只用 `universal --mode content` 输出的干净文本，而不是 HTML
 - 做“高度定制化”时，建议先用 `--dry-run` 固化请求体，再基于你要的字段做裁剪与标准化输出
 
-## 可选截图素材（用于 SEO 与转化）
+## 🎉 立即开始
 
-如果你希望 README 像参考项目一样“图文并茂”（更利于 GitHub SEO 与转化、也更利于用户快速理解输出），建议提供以下截图，并按文件名放入本仓库的 `images/` 目录：
+不要犹豫，立即获取您的免费资源！
 
-- `images/banner_cn.png`：README 顶部横幅（品牌 + 价值主张）
-- `images/output_keyword_json.png`：关键词搜索 API 返回 JSON 的截图（展示 `results` 中若干条商品字段）
-- `images/output_keyword_json_preview.png`：上图的“预览裁剪版”（只截一屏，用于 README 默认展示）
-- `images/output_reviews_json.png`：评论 JSON 输出的截图（展示 `results` 中一条评论的字段）
-- `images/niche_category_filter.png`：Category Filter API 输出示例截图（展示类目指标字段）
-- `images/skills_install.png`：Skills 页面中 Amazon Scraper Skill 与 Amazon Niche Data 的截图（包含安装命令）
+- ⭐ 给项目点个 Star
+- 📱 添加微信：Pangolin-Scraper（备注：GitHub 免费测试）
+- 🚀 开始您的数据采集之旅
 
-可选（用来解释“为什么不要自己爬前端页面”）：
-
-- `images/amazon_serp_page.png`：Amazon 搜索结果页截图（只做“场景示意”）
-- `images/amazon_blocked.png`：Amazon 被拦截/CAPTCHA/挑战页截图（用来解释反爬挑战）
-
-截图建议：
-
-- 宽度 ≥ 1200px，字段清晰可读
-- 不要包含任何 token/password
+让数据采集变得简单，让开源精神传递！ 🌟
