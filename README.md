@@ -10,6 +10,12 @@
 - Agent（Tool Calling / MCP / OpenClaw）所需的实时结构化数据输入
 - RAG / 数据管道（JSON 便于结构化，Markdown 便于切块检索）
 
+你将解决：
+
+- 反爬与 DOM 变更带来的高维护成本：用 API/Skill 获取稳定结构化输出
+- 数据不够实时导致的误判：用实时数据驱动选品、竞品监控与 Agent 决策
+- 数据不够“AI 友好”导致的不可用：优先 JSON/Markdown 作为 AI 输入格式
+
 核心观点：Agent 是否靠谱，首先取决于输入是否靠谱；而“靠谱输入”通常意味着 **实时、可验证、结构化**。
 
 ## 官网入口与免费试用
@@ -17,6 +23,14 @@
 [官网](https://www.pangolinfo.com/?referrer=github_amz)｜[控制台｜获取 API Key](https://tool.pangolinfo.com/?referrer=github_amz)｜[文档](https://docs.pangolinfo.com/?referrer=github_amz)｜[Scrape API](https://www.pangolinfo.com/zh/scraping-api/?referrer=github_amz)｜[Amazon Niche Data API](https://www.pangolinfo.com/zh/cn-amazon-niche-data-api/?referrer=github_amz)｜[AI SERP API](https://www.pangolinfo.com/zh/google-ai-overview-api/?referrer=github_amz)｜[Amazon Scraper Skill](https://www.pangolinfo.com/zh/pangolinfo-amazon-scraper-skill/?referrer=github_amz)｜[AI SERP Skill](https://www.pangolinfo.com/zh/pangolinfo-ai-serp-api-skill/?referrer=github_amz)
 
 免费试用：前往[控制台](https://tool.pangolinfo.com/?referrer=github_amz)注册并生成 API Key，新用户可获得免费测试积分，用于验证接口效果与数据准确性。
+
+## 🔥 复制即用（3 个最常用命令）
+
+```bash
+python3 main.py product --asin B0DYTF8L2W --site amz_us --zipcode 10041 --out product.json
+python3 main.py keyword --q "coffee maker" --site amz_us --out keyword.json
+python3 main.py reviews --asin B076CLQDR4 --site amz_us --page-count 1 --sort-by recent --out reviews.json
+```
 
 ## 目录
 
@@ -224,7 +238,8 @@ Amazon Scrape API 可动态兼容 Amazon 等电商页面结构变化，通过解
 - `code` / `message` / `data`
 - 主要结果通常在：`data.json[0].data.results`
 
-字段说明（按解析器）：
+<details>
+  <summary>点击展开：Amazon Scrape API 字段说明（按解析器）</summary>
 
 #### amzProductDetail（商品详情）
 
@@ -336,6 +351,8 @@ Amazon Scrape API 可动态兼容 Amazon 等电商页面结构变化，通过解
 | rating | 评分数 |
 | image | 图片链接 |
 
+</details>
+
 ### Amazon Review API：通用参数
 
 文档：https://docs.pangolinfo.com/en-api-reference/amazonReviewAPI/submit?referrer=github_amz
@@ -403,7 +420,6 @@ CLI：
 
 ```bash
 python3 main.py keyword --q "coffee maker" --site amz_us --out keyword.json
-python3 main.py keyword --q "coffee maker" --out keyword.csv --out-format csv
 ```
 
 <p>
